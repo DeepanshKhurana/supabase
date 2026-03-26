@@ -52,6 +52,8 @@ minimumReleaseAgeExclude:
   - h3
   - typescript
   - stripe-experiment-sync
+  - '@react-router/*'
+  - react-router
 
 onlyBuiltDependencies:
   - node-pty
