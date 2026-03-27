@@ -183,7 +183,12 @@ The Proxy is responsible for:
 
     The cookies object lets the Supabase client know how to access the cookies, so it can read and write the user session data. To make `@supabase/ssr` framework-agnostic, the cookies methods aren't hard-coded. These utility functions adapt `@supabase/ssr`'s cookie handling for Next.js.
 
-    `setAll` is called whenever the library needs to write cookies, for example after a token refresh. It receives two arguments: the array of cookies to set, and a `headers` object containing cache headers (`Cache-Control`, `Expires`, `Pragma`) that must be applied to the HTTP response to prevent CDNs from caching the response and leaking the session to other users. In the Proxy, apply these headers to the response. In Server Components, the headers cannot be set, which is why the `setAll` call is wrapped in a try/catch and the error is ignored. The Proxy handles writing cookies and headers on every request.
+    `setAll` is called whenever the library needs to write cookies, for example after a token refresh. It receives two arguments:
+    
+    - the array of cookies to set
+    - a `headers` object containing cache headers (`Cache-Control`, `Expires`, `Pragma`) that must be applied to the HTTP response to prevent CDNs from caching the response and leaking the session to other users.
+    
+    In the Proxy, apply these headers to the response. In Server Components, the headers cannot be set, which is why the `setAll` call is wrapped in a try/catch and the error is ignored. The Proxy handles writing cookies and headers on every request.
 
     The cookie is named `sb-<project_ref>-auth-token` by default.
 
